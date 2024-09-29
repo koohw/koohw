@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<h1><a href="{% url "articles:index" %}">INDEX</a></h1>
+<p><a href="{% url "articles:create" %}">CREATE</a></p>
+<hr>
+<h1>Index PAGE</h1>
+<hr>
+
+<h2>글 목록</h2>
+
+{% for article in articles %}
+<a href="{% url "articles:detail" article.pk%}">
+<p>{{ article.title }}</p>
+</a>
+{% endfor %}
+
+<ul>
+    {% for article in articles %}
+    <a href="{% url "articles:detail" article.pk%}">
+    <li>{{ article.title }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
+
+

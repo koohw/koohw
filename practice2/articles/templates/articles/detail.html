@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Detail PAGE</h1>
+
+{% if article.image%}
+    <img src="{{ article.image.url}}" alt="img">
+{% endif %}
+
+<p>제목: {{ article.title }}</p>
+<p>내용: {{ article.content }}</p>
+<a href="{% url "articles:index"%}">INDEX로 가기</a>
+
+<a href="{% url "articles:update" article.pk%}">게시글 수정</a>
+<form action="{% url "articles:delete" article.pk%}" method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value='DELETE'>
+</form>
+
+{% endblock content %}
+
+
+
